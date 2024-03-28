@@ -7,6 +7,7 @@ import axios from 'axios'
 import Pagination from '../Pagination'
 import TaskModal from '../TaskModal'
 export const TaskPage = () => {
+    const [taskId, setTaskId] = useState()
     const [taskList, setTaskList] = useState([])
     const [currentPage, setCurrentPage] = useState(1)
     const [postPerPage, setPostPerPage] = useState(8)
@@ -27,28 +28,24 @@ export const TaskPage = () => {
           setTaskList(currentPosts)
     }, []);
 
+    const toggleVisibility = () => {
+        setVisible(prevState => !prevState)
+    }
+
     const lastPostIndex = currentPage * postPerPage
     const firstPostIndex = lastPostIndex - postPerPage
-    //const currentPosts = taskList.slice(firstPostIndex, lastPostIndex)
 
     function showModal(itemId){
-        //we can do visibility check with the modal always be there
-        //and then use setsate IN THE MMODAL so in showmodal we preemptively set the state to the right values  
-        console.log("button clicked")
-        setVisible(true)
+        console.log(visible)
+        toggleVisibility()
         let task = taskList.filter((task)=> task._id == itemId)
         task = task[0]
-        
-        //console.log(task)
-        //console.log(task.taskDescription)
-        //console.log(task.rewardAmount)
-        //console.log(task.name)
+    
         setTaskName(task.name)
         setTaskDescription(task.taskDescription)
         setReward(task.rewardAmount)
-        console.log(taskName)
-        console.log(taskDescription)
-        console.log(reward)
+        setTaskId(task._id)
+        
     }
     function updateTaskList(itemId){
         const newTaskList = taskList.filter((task) => task._id != itemId)
@@ -71,7 +68,7 @@ export const TaskPage = () => {
 
         <div className='flex'>
             <VerticalNavbar/>
-            <TaskModal visible = {visible} taskName = {taskName} taskDescription = {taskDescription} reward = {reward}/>
+            <TaskModal visible = {visible} taskName = {taskName} taskDescription = {taskDescription} reward = {reward} taskid = {taskId} visibility = {toggleVisibility}/>
             <div className='flex flex-col w-full'>
         
                 
@@ -92,7 +89,9 @@ export const TaskPage = () => {
                             <tbody className='mx-auto'>
                                 {taskList.map((items) => (
                                     <tr className='max-w-0 border-y border-l-0 border-r-0 border-b-0 pt-2 pb-2' key={items._id}>
-                                        <td className='border border-gray-600 border-l-0 border-r-0 max-w-[50px] border-b-0 truncate text-white text-opacity-85 pt-2 pb-2'>{items.name}</td>
+                                        <td className='border border-gray-600 border-l-0 border-r-0 max-w-[50px] border-b-0 truncate text-white text-opacity-85 pt-2 pb-2'>
+                                            <button onClick={()=> showModal(items._id)}>{items.name}</button>
+                                        </td>
                                         <td className='border border-gray-600 border-l-0 border-r-0 max-w-[50px] border-b-0 truncate text-white text-opacity-85 pt-2 pb-2'>{items.taskDescription}</td>
                                         <td className='border border-gray-600 border-l-0 border-r-0 max-w-[50px] border-b-0 truncate text-white text-opacity-85 pt-2 pb-2'>{items.rewardAmount}</td>
                                         <td className='border border-gray-600 border-l-0 border-r-0 max-w-[50px] border-b-0'>
