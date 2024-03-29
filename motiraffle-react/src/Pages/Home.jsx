@@ -54,7 +54,7 @@ export const Home = () => {
             ))}
             {console.log(taskList)}
           </div>
-        <div>
+        <div className='ml-5'>
           <RecentCompletedTask/>
         </div>
       </div>

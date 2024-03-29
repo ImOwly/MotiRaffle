@@ -9,10 +9,17 @@ export const TaskModal = (props) => {
     const [taskDescription, setTaskDescription] = useState(props.taskDescription)
     const [visible, setVisible] = useState(false)
     const [edit, setEdit] = useState(false)
+    const [taskId, setTaskId] = useState(props.taskid)
 
     const handleVisibility = () =>{
         props.visibility();
     }
+
+    const updateTaskInfo = (taskObject, taskId) =>{
+        console.log('calling parent updatetaskinfo...')
+        props.updateTaskInfo(taskObject, taskId); // Call the function passed from the parent component
+    }
+
     useEffect(() =>{
         setTaskName(props.taskName)
         setReward(props.reward)
@@ -22,12 +29,13 @@ export const TaskModal = (props) => {
     }, [props.taskName, props.reward, props.taskDescription, props.visible, props.edit]);
 
     function handleSubmit(){
-        console.log('submitting')
         const editedTask = {
             name: taskName,
             rewardAmount: reward,
             taskDescription: taskDescription
         }
+
+
         axios
             .put('http://localhost:5555/tasks/'+ props.taskid, editedTask)
             .then((response)=>{
@@ -36,6 +44,7 @@ export const TaskModal = (props) => {
               .catch((error)=>{
                 console.log(error);
               })
+        updateTaskInfo(editedTask, props.taskid)
     }
 
     if(!visible) return null

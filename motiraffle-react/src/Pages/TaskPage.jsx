@@ -15,6 +15,8 @@ export const TaskPage = () => {
     const [taskName, setTaskName] = useState('')
     const [reward, setReward] = useState()
     const [taskDescription, setTaskDescription] = useState('')
+
+    //initial data retrieval of tasks that are not completed from tasks database
     useEffect(() =>{
         axios
           .get('http://localhost:5555/tasks/notcompleted')
@@ -28,15 +30,43 @@ export const TaskPage = () => {
           setTaskList(currentPosts)
     }, []);
 
+    //arrow function to toggle modal visibility, makes sure its never the same as previous
+    //state when toggling
     const toggleVisibility = () => {
         setVisible(prevState => !prevState)
     }
 
+    //called by modal to update a specific task from taskmodal so once saved
+    //the change is reflected on the webpage as well and not just the database
+    const updateTaskInfo = (taskObject, taskid) =>{
+        //find the index of the task id first
+        console.log('triggered?')
+        console.log('taskid is' + taskid)
+        const index = taskList.findIndex((task) => task._id === taskid)
+
+        if(index !== -1){
+            console.log('index found')
+            const updatedTaskList = [...taskList];
+            updatedTaskList[index] ={
+                ...updatedTaskList[index],
+                name: taskObject.name,
+                taskDescription: taskObject.taskDescription,
+                rewardAmount: taskObject.rewardAmount
+            }
+            setTaskList(updatedTaskList)
+            console.log(taskList)
+        }
+        
+
+    }
+
+    //post index for page pagination
     const lastPostIndex = currentPage * postPerPage
     const firstPostIndex = lastPostIndex - postPerPage
 
+
+    //show modal information
     function showModal(itemId){
-        console.log(visible)
         toggleVisibility()
         let task = taskList.filter((task)=> task._id == itemId)
         task = task[0]
@@ -47,6 +77,8 @@ export const TaskPage = () => {
         setTaskId(task._id)
         
     }
+
+    //filters out the task specified, for complete button to filter out task completed
     function updateTaskList(itemId){
         const newTaskList = taskList.filter((task) => task._id != itemId)
         setTaskList(newTaskList)
@@ -61,14 +93,20 @@ export const TaskPage = () => {
               .catch((error)=>{
                 console.log(error);
               })
-
-
     }
+
+
     return (
 
         <div className='flex'>
             <VerticalNavbar/>
-            <TaskModal visible = {visible} taskName = {taskName} taskDescription = {taskDescription} reward = {reward} taskid = {taskId} visibility = {toggleVisibility}/>
+            <TaskModal visible = {visible}
+            taskName = {taskName}
+            taskDescription = {taskDescription}
+            reward = {reward}
+            taskid = {taskId}
+            visibility = {toggleVisibility}
+            updateTaskInfo = {updateTaskInfo}/>
             <div className='flex flex-col w-full'>
         
                 
