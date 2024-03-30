@@ -108,9 +108,7 @@ export const TaskPage = () => {
               })
     }
 
-
     return (
-
         <div className='flex'>
             <VerticalNavbar/>
             <TaskModal visible = {visible}

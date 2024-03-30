@@ -1,6 +1,7 @@
-import express from 'express';
+import express, { response } from 'express';
 const router = express.Router();
 import { Raffle } from '../models/raffleModel.js';
+
 
 router.post('/', async (request, response)=>{
     try{
@@ -19,6 +20,17 @@ router.post('/', async (request, response)=>{
     }
 });
 
+router.get('/notclaimed', async (request, response)=>{
+    try{
+        const claimedRaffles = await Raffle.find({claimed: false});
+        return response.status(200).json(claimedRaffles);
+    }
+    catch (error){
+        console.log(error.message);
+        response.status(500).send({message:error.message});
+    }
+})
+
 router.get('/', async (request,response)=>{
     try{
         const raffles = await Raffle.find();
@@ -30,4 +42,34 @@ router.get('/', async (request,response)=>{
         response.status(500).send({message:error.message});
     }
 });
+
+router.delete('/:id', async(request, response)=>{
+    try{
+        Raffle.findByIdAndDelete(request.params.id).then(raffle=>{
+            if(!raffle){
+                return response.status(404).send();
+            }
+            response.send(raffle)
+        })
+    }
+    catch(error){
+        console.log(error.message)
+        response.status(500).send({message:error.message})
+    }
+})
+
+router.put('/:id', async(request, response) =>{
+    try{
+        const raffle = await Raffle.findByIdAndUpdate(request.params.id, request.body)
+        if(!raffle){
+            return response.status(404).json({message: 'raffle not found'})
+        }
+        const updatedRaffle = await Raffle.findById(request.params.id);
+        response.status(200).json(updatedRaffle)
+    }
+    catch(error){
+        console.log(error.message)
+        response.status(500).send({message:error.message})
+    }
+})
 export default router
