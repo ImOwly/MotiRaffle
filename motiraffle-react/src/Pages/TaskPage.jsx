@@ -12,6 +12,7 @@ export const TaskPage = () => {
     const [currentPage, setCurrentPage] = useState(1)
     const [postPerPage, setPostPerPage] = useState(8)
     const [visible, setVisible] = useState(false)
+    const [isEdit, setEdit] = useState(false)
     const [taskName, setTaskName] = useState('')
     const [reward, setReward] = useState()
     const [taskDescription, setTaskDescription] = useState('')
@@ -64,10 +65,22 @@ export const TaskPage = () => {
     const lastPostIndex = currentPage * postPerPage
     const firstPostIndex = lastPostIndex - postPerPage
 
-
+    //show view modal
+    function viewModal(itemId){
+        toggleVisibility()
+        setEdit(false)
+        let task = taskList.filter((task)=> task._id == itemId)
+        task = task[0]
+    
+        setTaskName(task.name)
+        setTaskDescription(task.taskDescription)
+        setReward(task.rewardAmount)
+        setTaskId(task._id)
+    }
     //show modal information
     function showModal(itemId){
         toggleVisibility()
+        setEdit(true)
         let task = taskList.filter((task)=> task._id == itemId)
         task = task[0]
     
@@ -106,7 +119,8 @@ export const TaskPage = () => {
             reward = {reward}
             taskid = {taskId}
             visibility = {toggleVisibility}
-            updateTaskInfo = {updateTaskInfo}/>
+            updateTaskInfo = {updateTaskInfo}
+            isEdit = {isEdit}/>
             <div className='flex flex-col w-full'>
         
                 
@@ -128,7 +142,7 @@ export const TaskPage = () => {
                                 {taskList.map((items) => (
                                     <tr className='max-w-0 border-y border-l-0 border-r-0 border-b-0 pt-2 pb-2' key={items._id}>
                                         <td className='border border-gray-600 border-l-0 border-r-0 max-w-[50px] border-b-0 truncate text-white text-opacity-85 pt-2 pb-2'>
-                                            <button onClick={()=> showModal(items._id)}>{items.name}</button>
+                                            <button onClick={()=> viewModal(items._id)}>{items.name}</button>
                                         </td>
                                         <td className='border border-gray-600 border-l-0 border-r-0 max-w-[50px] border-b-0 truncate text-white text-opacity-85 pt-2 pb-2'>{items.taskDescription}</td>
                                         <td className='border border-gray-600 border-l-0 border-r-0 max-w-[50px] border-b-0 truncate text-white text-opacity-85 pt-2 pb-2'>{items.rewardAmount}</td>
