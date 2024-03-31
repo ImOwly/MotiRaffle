@@ -7,6 +7,7 @@ import RecentClaimedRaffle from '../RecentlyClaimedRaffle'
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import RaffleModal from '../RaffleModal'
+import Statbox from '../../Statbox'
 export const RafflePage = () => {
     const [raffleId, setRaffleId] = useState()
     const [raffleList, setRaffleList] = useState([])
@@ -84,7 +85,7 @@ export const RafflePage = () => {
         setRaffleId(raffle._id)
         
     }
-
+    const amountRaffles = raffleList.length
     //filters out the raffle specified, for complete button to filter out task completed
     function updateRaffleList(itemId){
         const newRaffleList = raffleList.filter((raffle) => raffle._id != itemId)
@@ -106,61 +107,65 @@ export const RafflePage = () => {
 
         <div className='flex'>
             <VerticalNavbar/>
-            <RaffleModal visible = {visible}
-            raffleName = {raffleName}
-            cost = {cost}
-            raffleId = {raffleId}
-            visibility = {toggleVisibility}
-            updateRaffleInfo = {updateRaffleInfo}
-            isEdit = {isEdit}/>
             <div className='flex flex-col w-full'>
-                
-                
-                <div className='flex justify-between'>
-                    <h1 className='font-bold text-6xl mt-10 mx-10 mb-5 text-slate-100'>Your Raffles</h1>
-                    <button className='mt-5 bg-[#3fbb60] w-[150px] rounded-md font-medium my-11 mx-auto pt-2py-3 translate-x-[240px]'>Go to raffle</button>
+                <div className='flex pt-5 px-5'>
+                    <Statbox amount = {amountRaffles}/>
                 </div>
-                <div className='flex grow mb-[50px]'>
-                    <div className='bg-[#27282b] rounded mx-5 px-4 pt-2 flex-1'>
-                        <table className='w-full mt-2'>
-                            <thead>
-                                <tr>
-                                    <td className='text-white font-bold text-opacity-85 pt-2 pb-1'>Raffle</td>
-                                    <td className='text-white font-bold text-opacity-85 pt-2 pb-1'>Cost</td>
-                                </tr>
-                            </thead>
-                            <tbody className='mx-auto'>
-                                {raffleList.map((items) => (
-                                    <tr className='max-w-0 border-y border-l-0 border-r-0 border-b-0 pt-2 pb-2' key={items._id}>
-                                        <td className='border border-gray-600 border-l-0 border-r-0 max-w-[50px] border-b-0 truncate text-white text-opacity-85 pt-2 pb-2'>
-                                            <button onClick={()=> viewModal(items._id)}>{items.name}</button>
-                                        </td>
-                                        <td className='border border-gray-600 border-l-0 border-r-0 max-w-[50px] border-b-0 truncate text-white text-opacity-85 pt-2 pb-2'>{items.cost}</td>
-                                        <td className='border border-gray-600 border-l-0 border-r-0 max-w-[50px] border-b-0'>
-                                            <button className='grid place-items-center bg-blue-400 m-auto rounded-md px-7 py-1 border-grey-600 shadow-lg' onClick={()=> showModal(items._id)}>Edit</button>
-                                        </td>
-                                        <td className='border border-gray-600 border-l-0 border-r-0 max-w-[50px] border-b-0'>
-                                            <button className='grid place-items-center bg-blue-400 m-auto rounded-md px-2 py-1 border-grey-600 shadow-lg' onClick={() => updateRaffleList(items._id)}>Complete</button>
-                                        </td>
-                                    </tr>
-                                
-                                 ))}
-                                
-                            </tbody>
-                        </table>
-                        <div className='flex justify-center text-white font-bold text-opacity-85'>
-                            <Pagination
-                                totalPosts={raffleList.length}
-                                postPerPage={postPerPage}
-                                setCurrentPage={setCurrentPage}>
-                            </Pagination>
+                <div className='flex h-full w-full'>
+                    <RaffleModal visible = {visible}
+                    raffleName = {raffleName}
+                    cost = {cost}
+                    raffleId = {raffleId}
+                    visibility = {toggleVisibility}
+                    updateRaffleInfo = {updateRaffleInfo}
+                    isEdit = {isEdit}/>
+                    <div className='flex flex-col w-full'>
+                        <div className='flex justify-between'>
+                        <h1 className='font-bold text-4xl mt-1 mx-5 mb-5 text-slate-100'>Your Raffles</h1>
+                        </div>
+                        <div className='flex grow mb-[50px]'>
+                            <div className='bg-[#27282b] rounded mx-5 px-4 pt-2 flex-1'>
+                                <table className='w-full mt-2'>
+                                    <thead>
+                                        <tr>
+                                            <td className='text-white font-bold text-opacity-85 pt-2 pb-1'>Raffle</td>
+                                            <td className='text-white font-bold text-opacity-85 pt-2 pb-1'>Cost</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody className='mx-auto'>
+                                        {raffleList.map((items) => (
+                                            <tr className='max-w-0 border-y border-l-0 border-r-0 border-b-0 pt-2 pb-2' key={items._id}>
+                                                <td className='border border-gray-600 border-l-0 border-r-0 max-w-[50px] border-b-0 truncate text-white text-opacity-85 pt-2 pb-2'>
+                                                    <button onClick={()=> viewModal(items._id)}>{items.name}</button>
+                                                </td>
+                                                <td className='border border-gray-600 border-l-0 border-r-0 max-w-[50px] border-b-0 truncate text-white text-opacity-85 pt-2 pb-2'>{items.cost}</td>
+                                                <td className='border border-gray-600 border-l-0 border-r-0 max-w-[50px] border-b-0'>
+                                                    <button className='grid place-items-center bg-blue-400 m-auto rounded-md px-7 py-1 border-grey-600 shadow-lg' onClick={()=> showModal(items._id)}>Edit</button>
+                                                </td>
+                                                <td className='border border-gray-600 border-l-0 border-r-0 max-w-[50px] border-b-0'>
+                                                    <button className='grid place-items-center bg-blue-400 m-auto rounded-md px-2 py-1 border-grey-600 shadow-lg' onClick={() => updateRaffleList(items._id)}>Complete</button>
+                                                </td>
+                                            </tr>
+                                        
+                                        ))}
+                                        
+                                    </tbody>
+                                </table>
+                                <div className='flex justify-center text-white font-bold text-opacity-85'>
+                                    <Pagination
+                                        totalPosts={raffleList.length}
+                                        postPerPage={postPerPage}
+                                        setCurrentPage={setCurrentPage}>
+                                    </Pagination>
+                                </div>
+                            </div>   
                         </div>
                     </div>
-                    <RecentClaimedRaffle/>
                 </div>
-                
             </div>
-            
+            <div className='pt-5 pb-12'>
+                <RecentClaimedRaffle/>
+            </div>
         </div>
 
     

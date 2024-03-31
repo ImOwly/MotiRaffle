@@ -6,6 +6,7 @@ import RecentCompletedTask from '../RecentCompletedTask'
 import axios from 'axios'
 import Pagination from '../Pagination'
 import TaskModal from '../TaskModal'
+import Statbox from '../../Statbox'
 export const TaskPage = () => {
     const [taskId, setTaskId] = useState()
     const [taskList, setTaskList] = useState([])
@@ -37,6 +38,7 @@ export const TaskPage = () => {
         setVisible(prevState => !prevState)
     }
 
+    const amountTasks = taskList.length
     //called by modal to update a specific task from taskmodal so once saved
     //the change is reflected on the webpage as well and not just the database
     const updateTaskInfo = (taskObject, taskid) =>{
@@ -111,64 +113,73 @@ export const TaskPage = () => {
     return (
         <div className='flex'>
             <VerticalNavbar/>
-            <TaskModal visible = {visible}
-            taskName = {taskName}
-            taskDescription = {taskDescription}
-            reward = {reward}
-            taskid = {taskId}
-            visibility = {toggleVisibility}
-            updateTaskInfo = {updateTaskInfo}
-            isEdit = {isEdit}/>
             <div className='flex flex-col w-full'>
-        
-                
-                <div className='flex justify-between'>
-                    <h1 className='font-bold text-6xl mt-10 mx-10 mb-5 text-slate-100'>Your Tasks</h1>
+                <div className='flex pt-5 px-5'>
+                    <Statbox amount={amountTasks}/>
                     
                 </div>
-                <div className='flex grow mb-[50px]'>
-                    <div className='bg-[#27282b] rounded mx-5 px-4 pt-2 flex-1'>
-                        <table className='w-full mt-2'>
-                            <thead>
-                                <tr>
-                                    <td className='text-white font-bold text-opacity-85 pt-2 pb-1 max-w-[100px]'>Task name</td>
-                                    <td className='text-white font-bold text-opacity-85 pt-2 pb-1 max-w-[100px]'>Task Description</td>
-                                    <td className='text-white font-bold text-opacity-85 pt-2 pb-1 max-w-[30px]'>Reward Amount</td>
-                                </tr>
-                            </thead>
-                            <tbody className='mx-auto'>
-                                {taskList.map((items) => (
-                                    <tr className='max-w-0 border-y border-l-0 border-r-0 border-b-0 pt-2 pb-2' key={items._id}>
-                                        <td className='border border-gray-600 border-l-0 border-r-0 max-w-[50px] border-b-0 truncate text-white text-opacity-85 pt-2 pb-2'>
-                                            <button onClick={()=> viewModal(items._id)}>{items.name}</button>
-                                        </td>
-                                        <td className='border border-gray-600 border-l-0 border-r-0 max-w-[50px] border-b-0 truncate text-white text-opacity-85 pt-2 pb-2'>{items.taskDescription}</td>
-                                        <td className='border border-gray-600 border-l-0 border-r-0 max-w-[50px] border-b-0 truncate text-white text-opacity-85 pt-2 pb-2'>{items.rewardAmount}</td>
-                                        <td className='border border-gray-600 border-l-0 border-r-0 max-w-[50px] border-b-0'>
-                                            <button className='grid place-items-center bg-blue-400 m-auto rounded-md px-7 py-1 border-grey-600 shadow-lg' onClick={()=> showModal(items._id)}>Edit</button>
-                                        </td>
-                                        <td className='border border-gray-600 border-l-0 border-r-0 max-w-[50px] border-b-0'>
-                                            <button className='grid place-items-center bg-blue-400 m-auto rounded-md px-2 py-1 border-grey-600 shadow-lg' onClick={() => updateTaskList(items._id)}>Complete</button>
-                                        </td>
-                                    </tr>
-                                
-                                 ))}
-                                
-                            </tbody>
-                        </table>
-                        <div className='flex justify-center text-white font-bold text-opacity-85'>
-                            <Pagination
-                                totalPosts={taskList.length}
-                                postPerPage={postPerPage}
-                                setCurrentPage={setCurrentPage}>
-                            </Pagination>
+                <div className='flex h-full w-full'>
+                    <TaskModal 
+                    visible = {visible}
+                    taskName = {taskName}
+                    taskDescription = {taskDescription}
+                    reward = {reward}
+                    taskid = {taskId}
+                    visibility = {toggleVisibility}
+                    updateTaskInfo = {updateTaskInfo}
+                    isEdit = {isEdit}/>
+                    <div className='flex flex-col w-full'>
+                        <div className='flex justify-between'>
+                            <h1 className='font-bold text-4xl mt-1 mx-5 mb-5 text-slate-100'>Your Tasks</h1>
+                            
                         </div>
+                        <div className='flex grow mb-[50px]'>
+                            <div className='bg-[#27282b] rounded mx-5 px-4 pt-2 flex-1'>
+                                <table className='w-full mt-2'>
+                                    <thead>
+                                        <tr>
+                                            <td className='text-white font-bold text-opacity-85 pt-2 pb-1 max-w-[100px]'>Task name</td>
+                                            <td className='text-white font-bold text-opacity-85 pt-2 pb-1 max-w-[100px]'>Task Description</td>
+                                            <td className='text-white font-bold text-opacity-85 pt-2 pb-1 max-w-[30px]'>Reward Amount</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody className='mx-auto'>
+                                        {taskList.map((items) => (
+                                            <tr className='max-w-0 border-y border-l-0 border-r-0 border-b-0 pt-2 pb-2' key={items._id}>
+                                                <td className='border border-gray-600 border-l-0 border-r-0 max-w-[50px] border-b-0 truncate text-white text-opacity-85 pt-2 pb-2'>
+                                                    <button onClick={()=> viewModal(items._id)}>{items.name}</button>
+                                                </td>
+                                                <td className='border border-gray-600 border-l-0 border-r-0 max-w-[50px] border-b-0 truncate text-white text-opacity-85 pt-2 pb-2'>{items.taskDescription}</td>
+                                                <td className='border border-gray-600 border-l-0 border-r-0 max-w-[50px] border-b-0 truncate text-white text-opacity-85 pt-2 pb-2'>{items.rewardAmount}</td>
+                                                <td className='border border-gray-600 border-l-0 border-r-0 max-w-[50px] border-b-0'>
+                                                    <button className='grid place-items-center bg-blue-400 m-auto rounded-md px-7 py-1 border-grey-600 shadow-lg' onClick={()=> showModal(items._id)}>Edit</button>
+                                                </td>
+                                                <td className='border border-gray-600 border-l-0 border-r-0 max-w-[50px] border-b-0'>
+                                                    <button className='grid place-items-center bg-blue-400 m-auto rounded-md px-2 py-1 border-grey-600 shadow-lg' onClick={() => updateTaskList(items._id)}>Complete</button>
+                                                </td>
+                                            </tr>
+                                        
+                                        ))}
+                                        
+                                    </tbody>
+                                </table>
+                                <div className='flex justify-center text-white font-bold text-opacity-85'>
+                                    <Pagination
+                                        totalPosts={taskList.length}
+                                        postPerPage={postPerPage}
+                                        setCurrentPage={setCurrentPage}>
+                                    </Pagination>
+                                </div>
+                            </div>
+                        </div>
+                        
                     </div>
-                    <RecentCompletedTask/>
+                    
                 </div>
-                
             </div>
-            
+            <div className= 'pt-5 pb-12'>
+                <RecentCompletedTask/>
+            </div>
         </div>
   )
 }
