@@ -111,7 +111,7 @@ export const Tasks = (props) => {
       })
   }
   return (
-    <div className='flex flex-col items-center w-[220px] h-[500px] mx-4 bg-[#3fbb60] rounded-lg border border-black shaodw-md'>
+    <div className='flex flex-col items-center w-[300px] h-[560px] mx-4 bg-[#3fbb60] rounded-lg border border-black shaodw-md'>
         <img src={bronze} className='h-24 w-24 mt-4'/>
 
         <p id = 'taskName'className='font-bold pt-[10px] flex items-center justify-center'>{props.name}</p>
