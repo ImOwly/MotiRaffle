@@ -17,6 +17,13 @@ export const Statbox = (props) => {
                 <br/>
                 <p className='mb-2 text-slate-100 text-4xl font-bold ml-4'>{props.amount}</p>
             </div>
+            <div className='p-4 bg-blue-400 my-6 mx-4 w-full rounded-lg'>
+            <p className='text-slate-100 text-3xl ml-4'>Raffles owned</p>
+                <br/>
+                <br/>
+                <p className='mb-2 text-slate-100 text-4xl font-bold ml-4'>{props.amount}</p>
+            </div>
+            
         </div>
     </div>
   )

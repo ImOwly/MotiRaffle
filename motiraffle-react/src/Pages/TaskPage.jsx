@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import VerticalNavbar from '../VerticalNavbar'
 import Navbar from '../Navbar'
 import { useEffect } from 'react'
+import { Link } from 'react-router-dom'
 import RecentCompletedTask from '../RecentCompletedTask'
 import axios from 'axios'
 import Pagination from '../Pagination'
@@ -177,7 +178,12 @@ export const TaskPage = () => {
                     
                 </div>
             </div>
-            <div className= 'pt-5 pb-12'>
+            <div className= 'flex flex-col grow pt-5 pb-12'>
+                <Link to = '/createtask'>
+                    <button className='w-[340px] h-[150px] bg-indigo-500 mb-[25px] rounded-md text-2xl text-slate-100 font-bold'>
+                        Create a Task
+                    </button>
+                </Link>
                 <RecentCompletedTask/>
             </div>
         </div>

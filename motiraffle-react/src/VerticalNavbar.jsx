@@ -3,7 +3,7 @@ import { Outlet, Link } from 'react-router-dom'
 
 export const VerticalNavbar = () => {
   return (
-    <div className='flex flex-col sticky bg-[#27282b] h-screen px-3'>
+    <div className='flex flex-col sticky bg-[#27282b] h-screen px-3 min-w-[250px]'>
         <p className='w-full text-3xl font-bold text-[#3fbb60] ml-4 mr-4 mt-4'>Motiraffle</p>
         <button className='mt-4 bg-[#3fbb60] w-[150px] rounded-md font-medium my-6 mx-auto py-3'>
           <Link to = "/createtask">Create new Task</Link>
