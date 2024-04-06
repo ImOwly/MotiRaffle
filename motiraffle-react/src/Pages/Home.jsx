@@ -69,17 +69,14 @@ export const Home = () => {
   return (
     <div className='flex'> 
       <VerticalNavbar/>
-  
+      
       <div className='flex flex-col'>
+        
         <div className='flex ml-9 mt-3'>
           <Statbox amount = {5}/>
-          
-        </div>
-        <div className='flex'>
-          <h1 className='font-bold text-4xl mt-3 mx-10 mb-5 text-slate-100'>Welcome back</h1>
-          
         </div>
         <div className='flex grow mb-4'>
+
           <div className='flex grow bg-[#27282b] ml-9 pt-3 pb-3 rounded-md'>
             {taskList.slice(0,3).map((items) => (
               <Tasks taskDescription = {items.taskDescription} rewardAmount = {items.rewardAmount} name = {items.name} key= {items._id} dbid = {items._id}></Tasks>
@@ -87,10 +84,11 @@ export const Home = () => {
             
           </div>
           <div className='ml-5 w-[320px] bg-[#27282b] rounded-lg flex flex-col'>
-            <p className='text-center pt-2 text-slate-100 text-2xl'>Raffles</p>
+            <p className='text-center pt-6 text-slate-100 text-2xl'>Raffles</p>
             <div className='m-auto flex flex-col'>
               
-              {raffleList.slice(0,4).map((items)=>(
+              {raffleList.slice(0,5).map((items)=>(
+                
                 <RaffleCard name = {items.name} cost = {items.cost} key = {items._id} dbid = {items._id} updateRaffleList = {updateRaffleList}/>
               ))}
             </div>
@@ -102,14 +100,14 @@ export const Home = () => {
       </div>
       
       
-      <div className='flex flex-col grow ml-5 my-4'>
+      <div className='flex flex-col ml-5 my-4'>
           <Link to = '/createraffle'>
-            <button className='w-[375px] h-[115px] bg-[#3fbb60] mb-[25px] rounded-md text-2xl text-slate-100 font-bold'>
+            <button className='w-[375px] h-[115px] bg-indigo-500 mb-[25px] rounded-md text-2xl text-slate-100 font-bold hover:bg-indigo-600'>
               Create a Reward
             </button>
           </Link>
           <Link to = '/createtask'>
-            <button className='w-[375px] h-[115px] bg-indigo-500 mb-[25px] rounded-md text-2xl text-slate-100 font-bold'>
+            <button className='w-[375px] h-[115px] bg-indigo-500 mb-[25px] rounded-md text-2xl text-slate-100 font-bold hover:bg-indigo-600'>
               Create a Task
             </button>
           </Link>

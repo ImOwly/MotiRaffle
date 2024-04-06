@@ -111,17 +111,17 @@ export const Tasks = (props) => {
       })
   }
   return (
-    <div className='flex flex-col grow items-center w-[260px] mx-4 bg-[#3fbb60] rounded-lg border border-black shaodw-md'>
+    <div className='flex flex-col grow items-center w-[260px] mx-4 bg-indigo-400 rounded-lg shaodw-md hover:bg-indigo-600'>
         <img src={bronze} className='h-24 w-24 mt-4'/>
 
-        <p id = 'taskName'className='font-bold pt-[10px] flex items-center justify-center'>{props.name}</p>
+        <p id = 'taskName'className='font-bold pt-[10px] flex items-center justify-center text-slate-200'>{props.name}</p>
         {typeof props.taskDescription === 'undefined' ? <br></br> :<></>}
-        <p id = 'taskDescription' className=''>{props.taskDescription}</p>
+        <p id = 'taskDescription' className='text-slate-200'>{props.taskDescription}</p>
         <br></br>
-        <p className='font-bold '>Reward</p>
-        <p id = 'rewardAmount'>{props.rewardAmount} raffles</p>
+        <p className='font-bold text-slate-200'>Reward</p>
+        <p id = 'rewardAmount' className='text-slate-00'>{props.rewardAmount} raffles</p>
         <br></br>
-        <button className='bg-[#37a354] mt-[160px] rounded-md px-2 py-2 font-medium border border-black' onClick={handleDelete}>Finish task</button>
+        <button className='bg-indigo-500 mt-[160px] rounded-md px-2 py-2 font-medium shadow-sm text-slate-200 hover:bg-indigo-700' onClick={handleDelete}>Finish task</button>
     </div>
   )
 }

@@ -180,7 +180,7 @@ export const TaskPage = () => {
             </div>
             <div className= 'flex flex-col grow pt-5 pb-12'>
                 <Link to = '/createtask'>
-                    <button className='w-[340px] h-[150px] bg-indigo-500 mb-[25px] rounded-md text-2xl text-slate-100 font-bold'>
+                    <button className='w-[340px] h-[150px] bg-indigo-500 mb-[25px] rounded-md text-2xl text-slate-100 font-bold hover:bg-indigo-600'>
                         Create a Task
                     </button>
                 </Link>
