@@ -31,6 +31,17 @@ router.get('/notclaimed', async (request, response)=>{
     }
 })
 
+router.get('/claimed', async (request, response)=>{
+    try{
+        const claimedRaffles = await Raffle.find({claimed: true});
+        return response.status(200).json(claimedRaffles);
+    }
+    catch (error){
+        console.log(error.message);
+        response.status(500).send({message:error.message});
+    }
+})
+
 router.get('/', async (request,response)=>{
     try{
         const raffles = await Raffle.find();

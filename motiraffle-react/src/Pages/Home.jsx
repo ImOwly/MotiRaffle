@@ -10,18 +10,21 @@ import Statbox from '../../Statbox';
 import Tasks from '../Tasks';
 import RaffleCard from '../RaffleCard';
 import RecentCompletedTask from '../RecentCompletedTask';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 export const Home = () => {
   const [tasks, setTasks] = useState([])
   const [taskList, setTaskList] = useState([])
   const [raffleList, setRaffleList] = useState([])
   
   function updateRaffleList(itemId){
-    //let tempRaffleList = 
+    notify()
     const newRaffleList = raffleList.filter((raffle) => raffle._id != itemId)
         setRaffleList(newRaffleList)
         const claimed = {
             claimed : true
       }
+    
     axios
       .put('http://localhost:5555/raffles/'+ itemId, claimed)
       .then((response)=>{
@@ -30,20 +33,30 @@ export const Home = () => {
       .catch((error)=>{
         console.log(error);
       })
-
   }
-  useEffect(() =>{
+
+  function updateTaskList(itemId){
+    
+    const newTaskList = taskList.filter((task) => task._id != itemId)
+        setTaskList(newTaskList)
+        const completed = {
+            completed : true
+      }
+    
     axios
-      .get('http://localhost:5555/tasks/3')
+      .put('http://localhost:5555/tasks/'+ itemId, completed)
       .then((response)=>{
-        setTasks(response.data);
-      })
+          console.log(response.data)
+        })
       .catch((error)=>{
         console.log(error);
       })
+  }
+
+  useEffect(() =>{
       
     axios
-      .get('http://localhost:5555/tasks')
+      .get('http://localhost:5555/tasks/notcompleted')
       .then((response)=>{
         setTaskList(response.data);
       })
@@ -64,8 +77,10 @@ export const Home = () => {
   }, []);
 
 
-
-  //console.log(tasks)
+  const notify = () => {
+    toast('testing')
+  }
+  
   return (
     <div className='flex'> 
       <VerticalNavbar/>
@@ -77,9 +92,9 @@ export const Home = () => {
         </div>
         <div className='flex grow mb-4'>
 
-          <div className='flex grow bg-[#27282b] ml-9 pt-3 pb-3 rounded-md'>
+          <div className='flex grow w-[876px] bg-[#27282b] ml-9 pt-3 pb-3 rounded-md'>
             {taskList.slice(0,3).map((items) => (
-              <Tasks taskDescription = {items.taskDescription} rewardAmount = {items.rewardAmount} name = {items.name} key= {items._id} dbid = {items._id}></Tasks>
+              <Tasks taskDescription = {items.taskDescription} rewardAmount = {items.rewardAmount} name = {items.name} key= {items._id} dbid = {items._id} updateTaskList = {updateTaskList}></Tasks>
             ))}
             
           </div>
@@ -87,7 +102,7 @@ export const Home = () => {
             <p className='text-center pt-6 text-slate-100 text-2xl'>Raffles</p>
             <div className='m-auto flex flex-col'>
               
-              {raffleList.slice(0,5).map((items)=>(
+              {raffleList.slice(0,4).map((items)=>(
                 
                 <RaffleCard name = {items.name} cost = {items.cost} key = {items._id} dbid = {items._id} updateRaffleList = {updateRaffleList}/>
               ))}
@@ -112,9 +127,22 @@ export const Home = () => {
             </button>
           </Link>
         <RecentCompletedTask/>
+        <button onClick = {() => notify()}>test</button>
       </div>
     
-      
+      <ToastContainer
+      position="top-right"
+      autoClose={5000}
+      hideProgressBar={false}
+      newestOnTop={false}
+      closeOnClick
+      rtl={false}
+      pauseOnFocusLoss
+      draggable
+      pauseOnHover
+      theme="dark"
+      transition: Bounce
+      />
     </div>
   )
 }

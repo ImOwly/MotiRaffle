@@ -22,6 +22,17 @@ router.post('/', async(request, response) =>{
     }
 });
 
+router.get('/completed', async (request,response)=>{
+    try{
+        const completedTasks = await Task.find({completed: true});
+        return response.status(200).json(completedTasks);
+    }
+    catch (error){
+        console.log(error.message);
+        response.status(500).send({message:error.message});
+    }
+})
+
 router.get('/notcompleted', async (request,response)=>{
     try{
         const completedTasks = await Task.find({completed: false});
