@@ -140,10 +140,10 @@ export const RafflePage = () => {
                                                 </td>
                                                 <td className='border border-gray-600 border-l-0 border-r-0 max-w-[50px] border-b-0 truncate text-white text-opacity-85 pt-2 pb-2'>{items.cost}</td>
                                                 <td className='border border-gray-600 border-l-0 border-r-0 max-w-[50px] border-b-0'>
-                                                    <button className='grid place-items-center bg-blue-400 m-auto rounded-md px-7 py-1 border-grey-600 shadow-lg' onClick={()=> showModal(items._id)}>Edit</button>
+                                                    <button className='grid place-items-center bg-indigo-400 hover:bg-indigo-500 m-auto rounded-md px-7 py-1 border-grey-600 shadow-lg' onClick={()=> showModal(items._id)}>Edit</button>
                                                 </td>
                                                 <td className='border border-gray-600 border-l-0 border-r-0 max-w-[50px] border-b-0'>
-                                                    <button className='grid place-items-center bg-blue-400 m-auto rounded-md px-2 py-1 border-grey-600 shadow-lg' onClick={() => updateRaffleList(items._id)}>Complete</button>
+                                                    <button className='grid place-items-center bg-indigo-400 hover:bg-indigo-500 m-auto rounded-md px-2 py-1 border-grey-600 shadow-lg' onClick={() => updateRaffleList(items._id)}>Complete</button>
                                                 </td>
                                             </tr>
                                         
