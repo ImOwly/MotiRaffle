@@ -153,10 +153,10 @@ export const TaskPage = () => {
                                                 <td className='border border-gray-600 border-l-0 border-r-0 max-w-[50px] border-b-0 truncate text-white text-opacity-85 pt-2 pb-2'>{items.taskDescription}</td>
                                                 <td className='border border-gray-600 border-l-0 border-r-0 max-w-[50px] border-b-0 truncate text-white text-opacity-85 pt-2 pb-2'>{items.rewardAmount}</td>
                                                 <td className='border border-gray-600 border-l-0 border-r-0 max-w-[50px] border-b-0'>
-                                                    <button className='grid place-items-center bg-blue-400 m-auto rounded-md px-7 py-1 border-grey-600 shadow-lg' onClick={()=> showModal(items._id)}>Edit</button>
+                                                    <button className='grid place-items-center text-slate-200 bg-indigo-400 hover:bg-indigo-500 m-auto rounded-md px-7 py-1 border-grey-600 shadow-lg' onClick={()=> showModal(items._id)}>Edit</button>
                                                 </td>
                                                 <td className='border border-gray-600 border-l-0 border-r-0 max-w-[50px] border-b-0'>
-                                                    <button className='grid place-items-center bg-blue-400 m-auto rounded-md px-2 py-1 border-grey-600 shadow-lg' onClick={() => updateTaskList(items._id)}>Complete</button>
+                                                    <button className='grid place-items-center text-slate-200 bg-indigo-400 hover:bg-indigo-500 m-auto rounded-md px-2 py-1 border-grey-600 shadow-lg' onClick={() => updateTaskList(items._id)}>Complete</button>
                                                 </td>
                                             </tr>
                                         
@@ -180,7 +180,7 @@ export const TaskPage = () => {
             </div>
             <div className= 'flex flex-col grow pt-5 pb-12'>
                 <Link to = '/createtask'>
-                    <button className='w-[340px] h-[150px] bg-indigo-500 mb-[25px] rounded-md text-2xl text-slate-100 font-bold hover:bg-indigo-600'>
+                    <button className='hidden lg:block w-[340px] h-[150px] bg-indigo-500 mb-[25px] mr-3 rounded-md text-2xl text-slate-100 font-bold hover:bg-indigo-600'>
                         Create a Task
                     </button>
                 </Link>

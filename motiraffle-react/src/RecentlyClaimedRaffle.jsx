@@ -23,7 +23,7 @@ export const RecentClaimedRaffle = () => {
   const currentPosts = raffleList.slice(firstPostIndex, lastPostIndex)
 
   return (
-    <div className='flex flex-col bg-[#27282b] mr-[50px] pl-[70px] pr-[70px] rounded-md grow'>
+    <div className='hidden lg:block flex flex-col bg-[#27282b] mr-[50px] pl-[70px] pr-[70px] rounded-md grow'>
           <p className='border border-gray-600 border-t-0 border-l-0 border-r-0 text-white text-opacity-85 font-bold pt-4 pb-4'>Recently Claimed Raffles</p>
           {raffleList.slice(0,19).map((items) => (
               <li className='text-white text-opacity-85 pr-[60px] pt-1 list-none max-w-[200px] truncate' key={items._id}>{items.name}</li>
