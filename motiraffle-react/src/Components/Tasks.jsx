@@ -1,8 +1,8 @@
 /* eslint-disable react/prop-types */
 import React from 'react'
-import bronze from "./assets/bronze.png"
-import silver from "./assets/silver.png"
-import gold from "./assets/gold.png"
+import bronze from "../assets/bronze.png"
+import silver from "../assets/silver.png"
+import gold from "../assets/gold.png"
 import axios from 'axios'
 import { useEffect } from 'react'
 import { useState } from 'react'

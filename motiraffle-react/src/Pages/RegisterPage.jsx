@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import axios from 'axios';
-import Navbar from '../Navbar'
+import Navbar from '../Components/Navbar'
 import Alert from '@mui/material/Alert';
 
 export const RegisterPage = () => {

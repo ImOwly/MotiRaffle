@@ -1,13 +1,13 @@
 import React from 'react'
-import VerticalNavbar from '../VerticalNavbar'
-import RecentCompletedTask from '../RecentCompletedTask'
-import Pagination from '../Pagination'
+import VerticalNavbar from '../Components/VerticalNavbar'
+import RecentCompletedTask from '../Components/RecentCompletedTask'
+import Pagination from '../Components/Pagination'
 import axios from 'axios'
-import RecentClaimedRaffle from '../RecentlyClaimedRaffle'
+import RecentClaimedRaffle from '../Components/RecentlyClaimedRaffle'
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import RaffleModal from '../RaffleModal'
-import Statbox from '../../Statbox'
+import RaffleModal from '../Components/RaffleModal'
+import Statbox from '../Components/Statbox'
 export const RafflePage = () => {
     const [raffleId, setRaffleId] = useState()
     const [raffleList, setRaffleList] = useState([])

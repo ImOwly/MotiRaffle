@@ -1,5 +1,5 @@
 import React from 'react'
-import VerticalNavbar from '../VerticalNavbar'
+import VerticalNavbar from '../Components/VerticalNavbar'
 import { useState } from 'react'
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';

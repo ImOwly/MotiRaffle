@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import CenterText from './CenterText'
-import Navbar from './Navbar'
+import CenterText from './Components/CenterText'
+import Navbar from './Components/Navbar'
 
 
 

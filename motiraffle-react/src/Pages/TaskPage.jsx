@@ -1,13 +1,13 @@
 import React, { useState } from 'react'
-import VerticalNavbar from '../VerticalNavbar'
-import Navbar from '../Navbar'
+import VerticalNavbar from '../Components/VerticalNavbar'
+import Navbar from '../Components/Navbar'
 import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import RecentCompletedTask from '../RecentCompletedTask'
+import RecentCompletedTask from '../Components/RecentCompletedTask'
 import axios from 'axios'
-import Pagination from '../Pagination'
-import TaskModal from '../TaskModal'
-import Statbox from '../../Statbox'
+import Pagination from '../Components/Pagination'
+import TaskModal from '../Components/TaskModal'
+import Statbox from '../Components/Statbox'
 export const TaskPage = () => {
     const [taskId, setTaskId] = useState()
     const [taskList, setTaskList] = useState([])

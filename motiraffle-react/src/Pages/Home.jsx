@@ -1,15 +1,15 @@
 import React, { useRef } from 'react'
-import Navbar from '../Navbar'
-import VerticalNavbar from '../VerticalNavbar'
+import Navbar from '../Components/Navbar'
+import VerticalNavbar from '../Components/VerticalNavbar'
 import axios from 'axios';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import { forwardRef } from 'react'
 import { Outlet, Link } from 'react-router-dom'
-import Statbox from '../../Statbox';
-import Tasks from '../Tasks';
-import RaffleCard from '../RaffleCard';
-import RecentCompletedTask from '../RecentCompletedTask';
+import Statbox from '../Components/Statbox';
+import Tasks from '../Components/Tasks';
+import RaffleCard from '../Components/RaffleCard';
+import RecentCompletedTask from '../Components/RecentCompletedTask';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 export const Home = () => {
@@ -127,7 +127,6 @@ export const Home = () => {
             </button>
           </Link>
         <RecentCompletedTask/>
-        <button onClick = {() => notify()}>test</button>
       </div>
     
       <ToastContainer
