@@ -33,9 +33,9 @@ export const CreateRafflePage = () => {
                     <h1 className='font-bold text-6xl mt-10 mx-10 mb-5 text-slate-100'>Create Raffle</h1>
                     <form onSubmit = {handleSubmit} className='px-[100px]'>
                         <label className="text-base font-medium text-slate-100 text-opacity-85">Raffle Name</label>
-                        <input className = "rounded-md text-base w-full px-2 py-2 mb-6 border border-gray-800 focus:outline-none" type = "text" placeholder='Task Name' required value = {name} onChange = {(e) => setName(e.target.value)}/>
+                        <input className = "bg-[#27282b] rounded-md text-base w-full px-2 py-2 mb-6 border border-slate-200 focus:outline-none" type = "text" placeholder='Task Name' required value = {name} onChange = {(e) => setName(e.target.value)}/>
                         <label className="text-base font-medium text-slate-100 text-opacity-85">Raffle cost</label>
-                        <input className = "rounded-md text-base w-full px-2 py-2 mb-6 border border-gray-800 focus:outline-none" type = "number" placeholder= '0' required value = {cost} onChange = {(e) => setCost(e.target.value)}/>
+                        <input className = "bg-[#27282b] rounded-md text-base w-full px-2 py-2 mb-6 border border-slate-200 focus:outline-none" type = "number" placeholder= '0' required value = {cost} onChange = {(e) => setCost(e.target.value)}/>
                         <button className='p-2 bg-indigo-500 hover:bg-indigo-600 mt-3 rounded-md text-slate-100' type='submit'>Create Raffle</button>
                     </form>
                 </div>
