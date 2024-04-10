@@ -7,7 +7,6 @@ export const VerticalNavbar = () => {
         <p className='w-full text-3xl font-bold text-indigo-500 ml-4 mr-4 mt-4 mb-5'>Motiraffle</p>
         <div className='flex flex-col'>
           <Link to = "/home" className='ml-4 mb-2 text-slate-100 hover:bg-[#1c1c1e] rounded-md mr-4 pt-2 pb-2'>Dashboard</Link>
-          <Link to = "/" className='ml-4 mt-2 mb-2 text-slate-100 hover:bg-[#1c1c1e] rounded-md mr-4 pt-2 pb-2'>User</Link>
           <Link to = "/tasks" className='ml-4 mt-2 mb-2 text-slate-100 hover:bg-[#1c1c1e] rounded-md mr-4 pt-2 pb-2'>Tasks</Link>
           <Link to = "/raffle" className='ml-4 mt-2 mb-2 text-slate-100 hover:bg-[#1c1c1e] rounded-md mr-4 pt-2 pb-2'>Raffle</Link>
         </div>

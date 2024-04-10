@@ -51,40 +51,40 @@ export const TaskModal = (props) => {
     return (
         <div className='fixed inset-0 bg-black bg-opacity-25 backdrop-blur-sm flex justify-center items-center'>
             <div className='flex flex-col'>
-                {props.isEdit ? <div className='bg-white w-[700px] h-[500px] rounded-md'>
+                {props.isEdit ? <div className='bg-white w-[700px] h-[500px] rounded-md bg-[#2C2E33]'>
                     <div className='px-3 pt-4'>
-                        <label className="text-base font-medium">Task</label>
-                        <input className = "rounded-md text-base w-full px-2 py-2 mb-6 border border-gray-800 focus:outline-none" value = {taskName} onChange = {(e) => setTaskName(e.target.value)} type = "text" required/>
-                        <label className="text-base font-medium">Reward</label>
-                        <input className = "rounded-md text-base w-full px-2 py-2 border border-gray-800 focus:outline-none" type = "text" value = {reward} onChange = {(e) => setReward(e.target.value)} required/>
+                        <label className="text-base font-medium text-opacity-85 text-slate-200">Task</label>
+                        <input className = "rounded-md text-base w-full px-2 py-2 mb-6 border-2 border-slate-200 focus:outline-none bg-[#2C2E33]" value = {taskName} onChange = {(e) => setTaskName(e.target.value)} type = "text" required/>
+                        <label className="text-base font-medium text-opacity-85 text-slate-200">Reward</label>
+                        <input className = "rounded-md text-base w-full px-2 py-2 border-2 border-slate-200 focus:outline-none bg-[#2C2E33]" type = "text" value = {reward} onChange = {(e) => setReward(e.target.value)} required/>
                         <div className='pt-4 flex flex-col'>
-                            <label className="text-base font-medium">Description</label>
-                            <textarea className='h-[200px] rounded-md pl-[5px] border border-gray-800' required type = "text" value = {taskDescription} onChange = {(e) => setTaskDescription(e.target.value)} />
+                            <label className="text-base font-medium text-opacity-85 text-slate-200">Description</label>
+                            <textarea className='h-[200px] rounded-md pl-[5px] border-2 border-slate-200  bg-[#2C2E33] focus:outline-none' required type = "text" value = {taskDescription} onChange = {(e) => setTaskDescription(e.target.value)} />
                         </div>
                         <div className='flex flex-row-reverse pt-4 pl-1 pr-1'>
 
-                            <button className='bg-blue-400 px-5 py-1 rounded-md' onClick={() => handleSubmit()}>
+                            <button className='bg-indigo-400 hover:bg-indigo-500 px-5 py-1 rounded-md text-slate-100' onClick={() => handleSubmit()}>
                                 Save
                             </button>
                             
-                            <button className='bg-blue-400 px-5 py-1 rounded-md' onClick={() => handleVisibility()}>
+                            <button className='bg-indigo-400 hover:bg-indigo-500 px-5 py-1 rounded-md mx-2 text-slate-100' onClick={() => handleVisibility()}>
                                 Close
                             </button>
                         </div>
                     </div>
-                </div> : <div className='bg-white w-[700px] h-[500px] rounded-md'>
-                    <div className='px-3 pt-4'>
-                        <label className="text-base font-medium">Task</label>
-                        <input className = "rounded-md text-base w-full px-2 py-2 mb-6 border border-gray-800 focus:outline-none" value = {taskName} type = "text"/>
-                        <label className="text-base font-medium">Reward</label>
-                        <input className = "rounded-md text-base w-full px-2 py-2 border border-gray-800 focus:outline-none" type = "text" value = {reward}/>
+                </div> : <div className='bg-[#2C2E33] w-[700px] h-[500px] rounded-md'>
+                    <div className='px-3 pt-4 bg-[#2C2E33]'>
+                        <label className="text-base font-medium text-slate-200 text-opacity-85">Task</label>
+                        <input className = "bg-[#2C2E33] rounded-md text-base w-full px-2 py-2 mb-6 border border-slate-200 focus:outline-none" value = {taskName} type = "text"/>
+                        <label className="text-base font-medium text-slate-200 text-opacity-85">Reward</label>
+                        <input className = "bg-[#2C2E33] rounded-md text-base w-full px-2 py-2 border border-slate-200 focus:outline-none" type = "text" value = {reward}/>
                         <div className='pt-4 flex flex-col'>
-                            <label className="text-base font-medium">Description</label>
-                            <textarea className='h-[200px] rounded-md pl-[5px] border border-gray-800' required type = "text" value = {taskDescription}/>
+                            <label className="text-base font-medium text-slate-200 text-opacity-85">Description</label>
+                            <textarea className='bg-[#2C2E33] h-[200px] rounded-md pl-[5px] border border-slate-200' required type = "text" value = {taskDescription}/>
                         </div>
                         <div className='flex flex-row-reverse pt-4 pl-1 pr-1'>
                             
-                            <button className='bg-blue-400 px-5 py-1 rounded-md' onClick={() => handleVisibility()}>
+                            <button className='bg-indigo-400 hover:bg-indigo-500 px-5 py-1 rounded-md text-slate-100' onClick={() => handleVisibility()}>
                                 Close
                             </button>
                         </div>
